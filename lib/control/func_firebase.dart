@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LogarBaseFirebase {
   final BuildContext context;
@@ -10,7 +11,7 @@ class LogarBaseFirebase {
         email: email,
         password: senha,
       );
-      Navigator.of(context).pushNamed('/home');
+      Get.toNamed('/home');
       print('Logado com sucesso');
     } catch (e) {
       print('Erro ao fazer login: $e');
@@ -26,8 +27,21 @@ class CadastrarUsuario {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: senha);
       print('cadastrado com sucesso');
+      Get.toNamed('/log_user');
     } catch (e) {
       print('Deu erro: $e');
+    }
+  }
+}
+
+class DeslogarFirebase {
+  Future<void> deslogar() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      print('deslogado com sucesso');
+      Get.toNamed('/log_user');
+    } catch (e) {
+      print('Erro ao deslogar: $e');
     }
   }
 }

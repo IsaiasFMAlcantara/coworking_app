@@ -28,7 +28,6 @@ class _TelaLoginState extends State<TelaLogin> {
 
   @override
   Widget build(BuildContext context) {
-    // Crie uma instância da classe LogarBaseFirebase
     LogarBaseFirebase logarBaseFirebase = LogarBaseFirebase(context);
 
     return Padding(

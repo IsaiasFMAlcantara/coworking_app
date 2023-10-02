@@ -2,6 +2,7 @@ import 'package:coworking_app/custom/CustomText.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coworking_app/utils/colors.dart';
+import 'package:coworking_app/control/func_firebase.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
+  DeslogarFirebase deslogarBaseFirebase = DeslogarFirebase();
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -53,15 +55,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
             color: ColorsCoworking.buttomdrawerColor,
             child: ListTile(
               leading: Icon(
-                Icons.person,
+                Icons.room,
                 color: ColorsCoworking.icondrawerColor,
               ),
               title: CustomText(
-                texto: 'Login',
+                texto: 'Salas',
                 cor: ColorsCoworking.textdrawerColor,
               ),
               onTap: () {
-                Get.toNamed('/log_user');
+                Get.toNamed('/salas');
               },
             ),
           ),
@@ -77,7 +79,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 cor: ColorsCoworking.textdrawerColor,
               ),
               onTap: () {
-                Get.toNamed('/exit');
+                deslogarBaseFirebase.deslogar();
               },
             ),
           ),
