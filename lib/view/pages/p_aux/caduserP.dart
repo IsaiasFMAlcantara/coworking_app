@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:coworking_app/custom/CustomText.dart';
-import '../../../custom/CustomButtom.dart';
-import '../../../utils/colors.dart';
-import 'package:coworking_app/control/func_firebase.dart';
 
-class TelaLogin extends StatefulWidget {
-  const TelaLogin({Key? key}) : super(key: key);
+import '../../../control/func_firebase.dart';
+import '../../../custom/CustomButtom.dart';
+import '../../../custom/CustomText.dart';
+import '../../../utils/colors.dart';
+
+class CadastroUser extends StatefulWidget {
+  const CadastroUser({super.key});
 
   @override
-  State<TelaLogin> createState() => _TelaLoginState();
+  State<CadastroUser> createState() => _CadastroUserState();
 }
 
-class _TelaLoginState extends State<TelaLogin> {
+class _CadastroUserState extends State<CadastroUser> {
   final _formkey = GlobalKey<FormState>();
   bool _formValido = false;
   TextEditingController _emailvalido = TextEditingController();
@@ -28,8 +28,7 @@ class _TelaLoginState extends State<TelaLogin> {
 
   @override
   Widget build(BuildContext context) {
-    LogarBaseFirebase logarBaseFirebase = LogarBaseFirebase(context);
-
+    CadastrarUsuario cadastrarUsuario = CadastrarUsuario(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
       child: Container(
@@ -45,7 +44,7 @@ class _TelaLoginState extends State<TelaLogin> {
                     ),
                   ),
                   CustomText(
-                    texto: 'Área Login',
+                    texto: 'Área Cadastro de usuário',
                     cor: ColorsCoworking.textpageColor,
                   ),
                 ],
@@ -99,39 +98,14 @@ class _TelaLoginState extends State<TelaLogin> {
               height: 20,
             ),
             CustomButtom(
-              textobuttom: 'Login',
+              textobuttom: 'Cadastrar',
               corbuttom: ColorsCoworking.buttompageColor,
               funcao: () {
-                logarBaseFirebase.logarBase(
+                cadastrarUsuario.cadastraruser(
                   _emailvalido.text,
                   _senhavalida.text,
                 );
               },
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CustomButtom(
-                  textobuttom: 'Cadastrar Usuário',
-                  corbuttom: ColorsCoworking.buttompageColor,
-                  funcao: () {
-                    Get.toNamed('/cad_user');
-                  },
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                CustomButtom(
-                  textobuttom: 'Redefinir Senha',
-                  corbuttom: ColorsCoworking.buttompageColor,
-                  funcao: () {
-                    Get.toNamed('/');
-                  },
-                ),
-              ],
             ),
           ],
         ),

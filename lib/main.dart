@@ -5,7 +5,7 @@ import 'firebase_options.dart';
 
 import 'view/homeScreen.dart';
 import 'view/pages/p_login.dart';
-
+import 'view/pages/p_caduser.dart';
 
 void main() async {
   await Firebase.initializeApp(
@@ -16,8 +16,9 @@ void main() async {
     debugShowCheckedModeBanner: false,
     initialRoute: '/log_user',
     getPages: [
-      GetPage(name: '/', page: () => HomeScreen()),
       GetPage(name: '/log_user', page: () => PLogin()),
+      GetPage(name: '/', page: () => HomeScreen()),
+      GetPage(name: '/cad_user', page: () => PCadU()),
     ],
   ));
 }
