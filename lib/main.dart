@@ -14,7 +14,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: '/',
+    initialRoute: '/log_user',
     getPages: [
       GetPage(name: '/', page: () => HomeScreen()),
       GetPage(name: '/log_user', page: () => PLogin()),

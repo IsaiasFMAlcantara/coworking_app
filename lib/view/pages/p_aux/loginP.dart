@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coworking_app/custom/CustomText.dart';
-
 import '../../../custom/CustomButtom.dart';
 import '../../../utils/colors.dart';
+import 'package:coworking_app/control/func_firebase.dart';
 
 class TelaLogin extends StatefulWidget {
-  const TelaLogin({super.key});
+  const TelaLogin({Key? key}) : super(key: key);
 
   @override
   State<TelaLogin> createState() => _TelaLoginState();
@@ -16,8 +16,8 @@ class _TelaLoginState extends State<TelaLogin> {
   final _formkey = GlobalKey<FormState>();
   bool _formValido = false;
   TextEditingController _emailvalido = TextEditingController();
-
   TextEditingController _senhavalida = TextEditingController();
+
   String _validarEntrada(String? mensagem) {
     if (mensagem == null || mensagem.isEmpty) {
       return 'Preencha o campo';
@@ -28,6 +28,9 @@ class _TelaLoginState extends State<TelaLogin> {
 
   @override
   Widget build(BuildContext context) {
+    // Crie uma instância da classe LogarBaseFirebase
+    LogarBaseFirebase logarBaseFirebase = LogarBaseFirebase(context);
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
       child: Container(
@@ -100,7 +103,10 @@ class _TelaLoginState extends State<TelaLogin> {
               textobuttom: 'Login',
               corbuttom: ColorsCoworking.buttompageColor,
               funcao: () {
-                Get.toNamed('/');
+                logarBaseFirebase.logarBase(
+                  _emailvalido.text,
+                  _senhavalida.text,
+                );
               },
             ),
             SizedBox(
