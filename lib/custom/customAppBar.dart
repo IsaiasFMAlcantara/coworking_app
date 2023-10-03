@@ -20,21 +20,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.food_bank_rounded,
-              color: ColorsCoworking.iconappbarColor,
-            ),
-            SizedBox(width: 8),
-            //Text(title),
             CustomText(
               texto: title,
               cor: ColorsCoworking.textappbarColor,
-            ),
-            SizedBox(width: 8),
-            Icon(
-              Icons.food_bank_rounded,
-              color: ColorsCoworking.iconappbarColor,
-            ),
+            )
           ],
         ),
       ),
