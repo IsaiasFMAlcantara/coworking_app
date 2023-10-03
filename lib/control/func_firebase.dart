@@ -45,3 +45,18 @@ class DeslogarFirebase {
     }
   }
 }
+
+class RedefinirSenha {
+  final BuildContext context;
+  RedefinirSenha(this.context);
+  Future<void> redefinirsenha(String email) async {
+    try {
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: email);
+      print('Email enviado com sucesso');
+      Get.toNamed('/log_user');
+    } catch (e) {
+      print('Erro: $e');
+    }
+  }
+}

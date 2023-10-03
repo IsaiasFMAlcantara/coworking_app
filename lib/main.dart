@@ -6,6 +6,7 @@ import 'firebase_options.dart';
 import 'view/homeScreen.dart';
 import 'view/pages/p_login.dart';
 import 'view/pages/p_caduser.dart';
+import 'view/pages/p_resetpw.dart';
 
 void main() async {
   await Firebase.initializeApp(
@@ -19,6 +20,7 @@ void main() async {
       GetPage(name: '/log_user', page: () => PLogin()),
       GetPage(name: '/', page: () => HomeScreen()),
       GetPage(name: '/cad_user', page: () => PCadU()),
+      GetPage(name: '/reset_pw', page: () => PResetPW()),
     ],
   ));
 }

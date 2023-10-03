@@ -128,7 +128,7 @@ class _TelaLoginState extends State<TelaLogin> {
                   textobuttom: 'Redefinir Senha',
                   corbuttom: ColorsCoworking.buttompageColor,
                   funcao: () {
-                    Get.toNamed('/');
+                    Get.toNamed('/reset_pw');
                   },
                 ),
               ],
