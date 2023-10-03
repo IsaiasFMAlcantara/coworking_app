@@ -11,6 +11,10 @@ class SalasDetalhes extends StatefulWidget {
 class _SalasDetalhesState extends State<SalasDetalhes> {
   @override
   Widget build(BuildContext context) {
-    return Column(children: [Text('${widget.salad[0]}')],);
+    return Column(
+      children: [
+        Text('${widget.salad[0]['nome_sala']}'),
+      ],
+    );
   }
 }
