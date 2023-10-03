@@ -7,6 +7,8 @@ import 'view/homeScreen.dart';
 import 'view/pages/p_login.dart';
 import 'view/pages/p_caduser.dart';
 import 'view/pages/p_resetpw.dart';
+import 'view/pages/p_salas.dart';
+import 'view/pages/p_salas.dart';
 
 void main() async {
   await Firebase.initializeApp(
@@ -21,6 +23,8 @@ void main() async {
       GetPage(name: '/', page: () => HomeScreen()),
       GetPage(name: '/cad_user', page: () => PCadU()),
       GetPage(name: '/reset_pw', page: () => PResetPW()),
+      GetPage(name: '/reset_pw', page: () => PSalas()),
+      GetPage(name: '/salas', page: () => PSalas()),
     ],
   ));
 }

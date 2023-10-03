@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class UserController extends GetxController {
@@ -61,5 +62,19 @@ class RedefinirSenha {
       Get.toNamed('/log_user');
     } catch (e) {
     }
+  }
+}
+
+class ListarSalas {
+  Future<List<Map<String, dynamic>>> listarsalas() async {
+    final base = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot = await base.collection('rooms').get();
+
+    List<Map<String, dynamic>> salas = [];
+    querySnapshot.docs.forEach((doc) {
+      salas.add(doc.data() as Map<String, dynamic>);
+    });
+
+    return salas;
   }
 }
