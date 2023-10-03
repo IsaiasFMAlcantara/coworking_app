@@ -38,16 +38,15 @@ class _ListRoomsState extends State<ListRooms> {
             itemCount: salas.length,
             itemBuilder: (context, index) {
               final sala = salas[index];
-              return Padding(
-                padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-                child: Container(
-                  height: 40,
-                  child: Card(
-                    child: CustomText(
-                      texto: '${sala['nome_sala']}',
-                      cor: ColorsCoworking.texthomeColor,
-                    ),
-                  ),
+              return Card(
+                child: ListTile(
+                  title: CustomText(
+                    texto: '${sala['nome_sala']}',
+                    cor: ColorsCoworking.texthomeColor,
+                  ),subtitle: CustomText(
+                  texto: '${sala['preco']}',
+                  cor: ColorsCoworking.texthomeColor,
+                ),
                 ),
               );
             },
