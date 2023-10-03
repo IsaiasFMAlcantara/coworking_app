@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:coworking_app/control/func_firebase.dart';
 
 import '../../../utils/colors.dart';
+import '../p_salasdetalhes.dart';
 
 class ListRooms extends StatefulWidget {
   const ListRooms({super.key});
@@ -43,10 +44,14 @@ class _ListRoomsState extends State<ListRooms> {
                   title: CustomText(
                     texto: '${sala['nome_sala']}',
                     cor: ColorsCoworking.texthomeColor,
-                  ),subtitle: CustomText(
-                  texto: '${sala['preco']}',
-                  cor: ColorsCoworking.texthomeColor,
-                ),
+                  ),
+                  subtitle: CustomText(
+                    texto: '${sala['observacoes']}',
+                    cor: ColorsCoworking.texthomeColor,
+                  ),
+                  onTap: (){
+                    Get.to(PSalasDetalhes(idsala: sala['id']));
+                  },
                 ),
               );
             },

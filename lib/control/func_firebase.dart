@@ -70,9 +70,12 @@ class ListarSalas {
     final base = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot = await base.collection('rooms').get();
 
+    // Mapear os documentos e IDs para uma lista de mapas
     List<Map<String, dynamic>> salas = [];
     querySnapshot.docs.forEach((doc) {
-      salas.add(doc.data() as Map<String, dynamic>);
+      Map<String, dynamic> salaData = doc.data() as Map<String, dynamic>;
+      salaData['id'] = doc.id; // Adicione o ID ao mapa de dados
+      salas.add(salaData);
     });
 
     return salas;
