@@ -124,7 +124,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               color: ColorsCoworking.buttomdrawerColor,
               child: ListTile(
                 leading: Icon(
-                  Icons.exit_to_app,
+                  Icons.settings,
                   color: ColorsCoworking.icondrawerColor,
                 ),
                 title: CustomText(
