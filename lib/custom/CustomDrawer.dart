@@ -97,6 +97,22 @@ class _CustomDrawerState extends State<CustomDrawer> {
               },
             ),
           ),
+          Card(
+            color: ColorsCoworking.buttomdrawerColor,
+            child: ListTile(
+              leading: Icon(
+                Icons.exit_to_app,
+                color: ColorsCoworking.icondrawerColor,
+              ),
+              title: CustomText(
+                texto: 'CMS',
+                cor: ColorsCoworking.textdrawerColor,
+              ),
+              onTap: () {
+                ListarUsuarios();
+              },
+            ),
+          )
         ],
       ),
     );

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coworking_app/model/mod_firebase.dart';
 
 
 class UserController extends GetxController {
@@ -106,14 +107,12 @@ class ListarSalas {
 }
 
 class ListarUsuarios {
-  Future<List<Map<String, dynamic>>> listarUsuarios() async {
+  Future<List<Usuario>> listarUsuarios() async {
     final base = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot = await base.collection('usuarios').get();
-    List<Map<String, dynamic>> users = [];
+    List<Usuario> users = [];
     querySnapshot.docs.forEach((doc) {
-      Map<String, dynamic> usersData = doc.data() as Map<String, dynamic>;
-      usersData['id'] = doc.id;
-      users.add(usersData);
+      users.add(Usuario.fromDocument(doc));
     });
     return users;
   }

@@ -15,7 +15,7 @@ class HomeScreenP extends StatelessWidget {
         ),
         Center(
           child: Image.network(
-              'https://cdn-icons-png.flaticon.com/512/6712/6712159.png',width: 200,height: 200,),
+            'https://cdn-icons-png.flaticon.com/512/6712/6712159.png',width: 200,height: 200,),
         ),
         SizedBox(
           height: 20,
