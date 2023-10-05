@@ -1,9 +1,9 @@
-import 'package:coworking_app/custom/CustomText.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coworking_app/utils/colors.dart';
 import 'package:coworking_app/control/func_firebase.dart';
 
+import 'CustomText.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -15,6 +15,28 @@ class CustomDrawer extends StatefulWidget {
 class _CustomDrawerState extends State<CustomDrawer> {
   DeslogarFirebase deslogarBaseFirebase = DeslogarFirebase();
   final UserController _userController = Get.put(UserController());
+  bool isAdmin = false;
+
+  @override
+  void initState() {
+    super.initState();
+    isUserAdmin().then((result) {
+      setState(() {
+        isAdmin = result;
+      });
+    });
+  }
+
+  Future<bool> isUserAdmin() async {
+    final currentUser = _userController.user;
+    if (currentUser != null) {
+      final usuarios = await ListarUsuarios().listarUsuarios();
+      final isAdmin = usuarios.any((usuario) => usuario.email == currentUser.email && usuario.admin);
+      return isAdmin;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -97,22 +119,22 @@ class _CustomDrawerState extends State<CustomDrawer> {
               },
             ),
           ),
-          Card(
-            color: ColorsCoworking.buttomdrawerColor,
-            child: ListTile(
-              leading: Icon(
-                Icons.exit_to_app,
-                color: ColorsCoworking.icondrawerColor,
+          if (isAdmin)
+            Card(
+              color: ColorsCoworking.buttomdrawerColor,
+              child: ListTile(
+                leading: Icon(
+                  Icons.exit_to_app,
+                  color: ColorsCoworking.icondrawerColor,
+                ),
+                title: CustomText(
+                  texto: 'CMS',
+                  cor: ColorsCoworking.textdrawerColor,
+                ),
+                onTap: () {
+                },
               ),
-              title: CustomText(
-                texto: 'CMS',
-                cor: ColorsCoworking.textdrawerColor,
-              ),
-              onTap: () {
-                ListarUsuarios();
-              },
             ),
-          )
         ],
       ),
     );
