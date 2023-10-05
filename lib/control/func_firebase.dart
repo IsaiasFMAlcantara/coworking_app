@@ -25,6 +25,22 @@ class LogarBaseFirebase {
       );
       Get.toNamed('/home');
     } catch (e) {
+      print('Erro: $e');
+    }
+  }
+}
+
+class FirestoreService {
+  static Future<void> salvarInformacoesUsuario(
+      FirebaseFirestore firestore, String userId, String email) async {
+    try {
+      await firestore.collection('usuarios').doc().set({
+        'user_id':userId,
+        'email': email,
+        'admin': false,
+      });
+    } catch (e) {
+      print('Erro: $e');
     }
   }
 }
@@ -34,13 +50,20 @@ class CadastrarUsuario {
   CadastrarUsuario(this.context);
   Future<void> cadastraruser(String email, String senha) async {
     try {
-      await FirebaseAuth.instance
+      final UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: senha);
-      Get.toNamed('/log_user');
+      final User? user = userCredential.user;
+      if (user != null) {
+        Get.toNamed('/log_user');
+        await FirestoreService.salvarInformacoesUsuario(
+            FirebaseFirestore.instance, user.uid, email);
+      }
     } catch (e) {
+      print('Erro: $e');
     }
   }
 }
+
 
 class DeslogarFirebase {
   Future<void> deslogar() async {
@@ -48,6 +71,7 @@ class DeslogarFirebase {
       await FirebaseAuth.instance.signOut();
       Get.toNamed('/log_user');
     } catch (e) {
+      print('Erro: $e');
     }
   }
 }
@@ -61,6 +85,7 @@ class RedefinirSenha {
           .sendPasswordResetEmail(email: email);
       Get.toNamed('/log_user');
     } catch (e) {
+      print('Erro: $e');
     }
   }
 }
@@ -70,14 +95,12 @@ class ListarSalas {
     final base = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot = await base.collection('rooms').get();
 
-    // Mapear os documentos e IDs para uma lista de mapas
     List<Map<String, dynamic>> salas = [];
     querySnapshot.docs.forEach((doc) {
       Map<String, dynamic> salaData = doc.data() as Map<String, dynamic>;
-      salaData['id'] = doc.id; // Adicione o ID ao mapa de dados
+      salaData['id'] = doc.id;
       salas.add(salaData);
     });
-
     return salas;
   }
 }

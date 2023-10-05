@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:coworking_app/utils/colors.dart';
 import 'package:coworking_app/control/func_firebase.dart';
 
-import 'package:coworking_app/control/func_firebase.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key? key}) : super(key: key);
