@@ -8,7 +8,7 @@ class Usuario {
   factory Usuario.fromDocument(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return Usuario(
-      id: doc.id,
+      id: data['user_id'] ?? '',
       admin: data['admin'] ?? false,
       email: data['email'] ?? '',
     );
