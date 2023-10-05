@@ -104,3 +104,17 @@ class ListarSalas {
     return salas;
   }
 }
+
+class ListarUsuarios {
+  Future<List<Map<String, dynamic>>> listarUsuarios() async {
+    final base = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot = await base.collection('usuarios').get();
+    List<Map<String, dynamic>> users = [];
+    querySnapshot.docs.forEach((doc) {
+      Map<String, dynamic> usersData = doc.data() as Map<String, dynamic>;
+      usersData['id'] = doc.id;
+      users.add(usersData);
+    });
+    return users;
+  }
+}
