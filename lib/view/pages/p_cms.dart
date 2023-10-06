@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../custom/CustomDrawer.dart';
 import '../../custom/customAppBar.dart';
+import 'package:coworking_app/view/pages/p_aux/cmsP.dart';
 
 class PCms extends StatefulWidget {
   const PCms({super.key});
@@ -15,10 +16,8 @@ class _PCmsState extends State<PCms> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: CustomDrawer(),
-      appBar: CustomAppBar(title: 'List Rooms'),
-      body: Column(
-        children: [],
-      ),
+      appBar: CustomAppBar(title: 'Gerenciamento'),
+      body: TelaCms(),
     );
   }
 }

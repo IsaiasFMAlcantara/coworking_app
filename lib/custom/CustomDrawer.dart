@@ -31,7 +31,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
     final currentUser = _userController.user;
     if (currentUser != null) {
       final usuarios = await ListarUsuarios().listarUsuarios();
-      final isAdmin = usuarios.any((usuario) => usuario.email == currentUser.email && usuario.admin);
+      final isAdmin = usuarios.any(
+          (usuario) => usuario.email == currentUser.email && usuario.admin);
       return isAdmin;
     }
     return false;
@@ -45,7 +46,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
         children: [
           UserAccountsDrawerHeader(
             accountName: Text(_userController.user?.displayName ?? ''),
-            accountEmail: Text(_userController.user?.email ?? 'No user logged in'),
+            accountEmail:
+                Text(_userController.user?.email ?? 'No user logged in'),
             currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.white,
                 child: Text(
@@ -132,6 +134,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   cor: ColorsCoworking.textdrawerColor,
                 ),
                 onTap: () {
+                  Get.toNamed('/cms');
                 },
               ),
             ),
