@@ -1,6 +1,8 @@
 import 'package:coworking_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../p_cadsala.dart';
+
 class TelaCms extends StatefulWidget {
   const TelaCms({super.key});
 
@@ -15,7 +17,9 @@ class _TelaCmsState extends State<TelaCms> {
     return Scaffold(
       body: IndexedStack(
         index: _paginaSelecionada,
-        children: [],
+        children: [
+          PCadS(),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _paginaSelecionada,

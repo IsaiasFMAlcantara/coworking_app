@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coworking_app/model/mod_firebase.dart';
 
-
 class UserController extends GetxController {
   Rx<User?> _user = Rx<User?>(null);
   User? get user => _user.value;
@@ -31,12 +30,46 @@ class LogarBaseFirebase {
   }
 }
 
+class Sala {
+  final int capacidade;
+  final List<String> equipamentos;
+  final String nome;
+  final String observacoes;
+  final double preco;
+  final int tamanho;
+
+  Sala({
+    required this.capacidade,
+    required this.equipamentos,
+    required this.nome,
+    required this.observacoes,
+    required this.preco,
+    required this.tamanho,
+  });
+
+  Future<void> cadastrarNoFirestore(FirebaseFirestore firestore) async {
+    try {
+      await firestore.collection('rooms').add({
+        'capacidade': capacidade,
+        'equipamentos': equipamentos,
+        'nome_sala': nome,
+        'observacoes': observacoes,
+        'preco': preco,
+        'tamanho': tamanho,
+      });
+    } catch (e) {
+      print('Erro: $e');
+    }
+  }
+}
+
+
 class FirestoreService {
   static Future<void> salvarInformacoesUsuario(
       FirebaseFirestore firestore, String userId, String email) async {
     try {
       await firestore.collection('usuarios').doc().set({
-        'user_id':userId,
+        'user_id': userId,
         'email': email,
         'admin': false,
       });
@@ -65,7 +98,6 @@ class CadastrarUsuario {
   }
 }
 
-
 class DeslogarFirebase {
   Future<void> deslogar() async {
     try {
@@ -82,8 +114,7 @@ class RedefinirSenha {
   RedefinirSenha(this.context);
   Future<void> redefinirsenha(String email) async {
     try {
-      await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: email);
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
       Get.toNamed('/log_user');
     } catch (e) {
       print('Erro: $e');
